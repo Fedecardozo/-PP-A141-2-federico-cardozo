@@ -9,17 +9,17 @@ import { Producto } from '../../../models/producto';
   styleUrl: './tabla-productos.component.css',
 })
 export class TablaProductosComponent {
-  @Input() productoSeleccionada: Producto[] = [];
-  @Output() avisarSeleccion = new EventEmitter<void>();
+  @Input() productoSeleccionada?: Producto;
+  @Output() avisarSeleccion = new EventEmitter<Producto>();
   @Input() listaProductos: Producto[] = [];
 
   seleccionProducto(producto: Producto) {
     const classStyle = producto.getClase();
     producto.setClase(classStyle + ' bg-info');
-    if (this.productoSeleccionada[0]) {
-      this.productoSeleccionada[0].setClase(classStyle);
+    if (this.productoSeleccionada) {
+      this.productoSeleccionada.setClase(classStyle);
     }
-    this.productoSeleccionada[0] = producto;
-    this.avisarSeleccion.emit();
+    this.productoSeleccionada = producto;
+    this.avisarSeleccion.emit(producto);
   }
 }

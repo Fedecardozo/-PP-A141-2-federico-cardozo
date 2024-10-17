@@ -20,9 +20,10 @@ import { DetallePaisComponent } from './detalle-pais/detalle-pais.component';
 })
 export class ProductosComponent {
   productos: Producto[] = [];
-  productoseleccionada: Producto[] = [];
+  productoseleccionada?: Producto;
   fire: FireService = inject(FireService);
   sub?: Subscription;
+  pais?: Pais;
 
   ngOnInit(): void {
     this.sub = this.fire
@@ -53,7 +54,9 @@ export class ProductosComponent {
     this.sub?.unsubscribe();
   }
 
-  getSeleccionPelicula() {
-    this.productoseleccionada[0];
+  getSeleccionPelicula(producto: Producto) {
+    this.productoseleccionada = producto;
+    this.pais = producto.pais;
+    console.log(this.productoseleccionada);
   }
 }
