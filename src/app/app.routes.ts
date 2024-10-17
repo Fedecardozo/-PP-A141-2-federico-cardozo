@@ -12,4 +12,11 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/login/login.component').then((m) => m.LoginComponent),
   },
+  {
+    path: 'alta',
+    loadComponent: () =>
+      import('./pages/alta-producto/alta-producto.component').then(
+        (m) => m.AltaProductoComponent
+      ),
+  },
 ];
