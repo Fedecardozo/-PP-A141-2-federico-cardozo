@@ -19,4 +19,11 @@ export const routes: Routes = [
         (m) => m.AltaProductoComponent
       ),
   },
+  {
+    path: 'productos',
+    loadComponent: () =>
+      import('./pages/productos/productos.component').then(
+        (m) => m.ProductosComponent
+      ),
+  },
 ];

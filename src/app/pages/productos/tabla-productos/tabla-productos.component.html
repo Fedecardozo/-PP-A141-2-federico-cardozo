@@ -1,0 +1,13 @@
+<!-- Mostrar listado de peliculas cargadas y se podra seleccionar una -->
+<div class="p-5 mb-4 bg-light rounded-3">
+  <div class="container-fluid py-5">
+    <h1 class="display-5 fw-bold">Tabla productos</h1>
+    <ul class="list-group">
+      @for (item of this.listaProductos; track $index) {
+      <li class="{{ item.getClase() }}" (click)="seleccionProducto(item)">
+        {{ item.codigo }}
+      </li>
+      }
+    </ul>
+  </div>
+</div>
