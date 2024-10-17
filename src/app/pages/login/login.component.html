@@ -1,12 +1,5 @@
 <main class="form-signin">
-  <form>
-    <img
-      class="mb-4"
-      src="../assets/brand/bootstrap-logo.svg"
-      alt=""
-      width="72"
-      height="57"
-    />
+  <form [formGroup]="fg">
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
     <div class="form-floating">
@@ -15,8 +8,18 @@
         class="form-control"
         id="floatingInput"
         placeholder="name@example.com"
+        formControlName="correo"
       />
       <label for="floatingInput">Email address</label>
+      <div class="cont-p">
+        @if(this.fg.controls['correo'].errors !== null &&
+        this.fg.controls["correo"].touched) { @if
+        (this.fg.controls['correo'].errors!['required']) {
+        <p>El campo esta vacio</p>
+        } @else if (this.fg.controls['correo'].errors!['email']) {
+        <p>No es un correo valido</p>
+        } }
+      </div>
     </div>
     <div class="form-floating">
       <input
@@ -24,14 +27,34 @@
         class="form-control"
         id="floatingPassword"
         placeholder="Password"
+        formControlName="clave"
       />
       <label for="floatingPassword">Password</label>
+      <div class="cont-p">
+        @if(this.fg.controls['clave'].errors !== null &&
+        this.fg.controls["clave"].touched) { @if
+        (this.fg.controls['clave'].errors!['required']) {
+        <p>El campo esta vacio</p>
+        } }
+      </div>
     </div>
 
-    <div class="checkbox mb-3">
-      <label> <input type="checkbox" value="remember-me" /> Remember me </label>
+    <div class="mb-3 d-flex justify-content-around">
+      <button class="btn bg-info" (click)="cargaUsuario(usuarios[0])">
+        admin
+      </button>
+      <button class="btn bg-info" (click)="cargaUsuario(usuarios[1])">
+        empleado
+      </button>
     </div>
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+
+    <button
+      class="w-100 btn btn-lg btn-primary"
+      type="submit"
+      (click)="acceder()"
+    >
+      Sign in
+    </button>
     <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
   </form>
 </main>
